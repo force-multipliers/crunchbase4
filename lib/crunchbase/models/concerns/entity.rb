@@ -25,7 +25,7 @@ module Crunchbase
 
       def setup_relationships(object, request_card_ids, response_cards)
         request_card_ids.each do |card_id|
-          card_data = response_cards.dig(card_id)
+          card_data = response_cards&.dig(card_id) || []
           card_model = model_mappings[card_id]
           card_objects = if card_data.is_a?(Array)
                            card_data.each_with_object([]) do |data, objects|
